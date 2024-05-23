@@ -12,7 +12,7 @@ Welcome to the Chicken Health Expert System! This web application leverages the 
 - **Backend**: Django, Django REST Framework
 - **Frontend**: HTML, Tailwind CSS
 - **Geospatial Data**: Django GIS
-- **LLM Integration**: fine-tuned **Nous-Hermes-Llama2-13b** model with chicken related data 
+- **LLM Integration**: use Gradientai to fine-tune **Nous-Hermes-Llama2-13b** model with chicken related data 
 
 ## Installation
 
