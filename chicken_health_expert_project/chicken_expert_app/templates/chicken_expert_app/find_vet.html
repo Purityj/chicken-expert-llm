@@ -1,0 +1,36 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% tailwind_css %}
+    <title>Nearest Vets</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn2hf6Ob8wFce_zebprUorRwzd2sSB95k&libraries=places"></script>
+    {% load static%}
+    <script src="{% static 'js/find_vet.js' %}"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+    {% include 'chicken_expert_app/navbar.html' %}
+
+    <main>
+        <div class="bg-white shadow-md rounded-lg p-6">
+        <h1 class="text-3l font-bold text-indigo-700 mb-4 text-center"> Find Nearby Veterinary Offices</h1>
+        <div class="space-y-4 w-4/5 mx-auto">
+            <div>
+                <input id="searchTextField" size="50" type="text"
+                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white 
+                focus:outline-none focus:rind-indigo-500 focus:border-indigo-500">
+            </div>
+            <div id="map" style="height: 500px;"></div>
+        </div>
+    </div>
+    </main>
+
+    <footer class="bg-indigo-700 text-white text-center py-4">
+        &copy; 2024 Chicken Health Expert LLM System. All rights reserved.
+    </footer>
+    
+</body>
+</html>
