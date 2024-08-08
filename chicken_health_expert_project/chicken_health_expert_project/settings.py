@@ -28,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*", ".vercel.app"]
 
+# Use file-based sessions
+SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+SESSION_FILE_PATH = '/tmp/django_sessions'
 
 # Application definition
 
