@@ -1,8 +1,7 @@
 from langchain.chains import LLMChain  # pip install langchain-community, pip install -U langchain
 from langchain.prompts import PromptTemplate
 from langchain_community.llms import GradientLLM
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
 import warnings, os, json, requests, re
 import sqlite3
 from .models import Interaction
@@ -12,9 +11,16 @@ from spellchecker import SpellChecker
 # suppress all(including depreciation) warnings
 warnings.filterwarnings("ignore")
 
-# Set the environment variables for gradient.ai
-os.environ['GRADIENT_ACCESS_TOKEN'] = "XBBcWHO3xsE8y6Gkx9TVW6JOLr0VUfbN"
-os.environ['GRADIENT_WORKSPACE_ID'] = "6b156994-76e0-4f26-9deb-dbbcc901670c_workspace"
+load_dotenv()
+
+# retrieve credentials from environment variables 
+GRADIENT_ACCESS_TOKEN = os.getenv('GRADIENT_ACCESS_TOKEN')
+GRADIENT_WORKSPACE_ID = os.getenv('GRADIENT_WORKSPACE_ID')
+GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
+
+# Set environment variables for gradient.ai
+os.environ['GRADIENT_ACCESS_TOKEN'] = GRADIENT_ACCESS_TOKEN
+os.environ['GRADIENT_WORKSPACE_ID'] = GRADIENT_WORKSPACE_ID
 
 # resolve longitude and latitude to location name
 def get_place_name(latitude, longitude, api_key):
@@ -69,7 +75,6 @@ def correct_spelling(user_query):
 # Use the fine-tuned model to get 
 def get_chicken_expert_response(user_query, location=None):
     model_adapter_id = "fdfac42e-938e-4e52-8975-4a641261578e_model_adapter"
-    google_maps_api_key = 'AIzaSyDn2hf6Ob8wFce_zebprUorRwzd2sSB95k'
     
     llm = GradientLLM(
         model=model_adapter_id, 
@@ -94,7 +99,7 @@ def get_chicken_expert_response(user_query, location=None):
         location_data = json.loads(location)
         latitude = location_data.get('lat')
         longitude = location_data.get('lng')
-        location_name = get_place_name(latitude, longitude, google_maps_api_key)
+        location_name = get_place_name(latitude, longitude, GOOGLE_MAPS_API_KEY)
         print(f'Parsed location data: Latitude={latitude}, Longitude={longitude}, Location Name={location_name}')
 
     # save interaction using Django ORM

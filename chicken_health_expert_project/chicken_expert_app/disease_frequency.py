@@ -33,18 +33,6 @@ def get_disease_frequency():
     print("Loaded and converted chicken disease keywords to lower case from JSON ")
     # print(f"Loaded and converted chicken disease keywords to lower case from JSON = {chicken_disease_keywords}")
 
-
-    # # List of keywords related to chicken diseases
-    # chicken_disease_keywords = [
-    #     "newcastle",
-    #     "coccidiosis",
-    #     "marek's",
-    #     "swollen crop",
-    #     "avian influenza",
-    #     "aspergillosis",
-    # ]
-    # print("Defined chicken disease keywords.")
-
     # Process each interaction
     for interaction in interactions:
         user_query = interaction.question.lower()
