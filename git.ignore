@@ -1,4 +1,5 @@
 .venv
+.env
 chicken_health_expert_project/__pycache__/
 chicken_health_expert_project/chicken_expert_app/__pycache__/
 chicken_health_expert_project/chicken_expert_app/migrations/__pycache__/
